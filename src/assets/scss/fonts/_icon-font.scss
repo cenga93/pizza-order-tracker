@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "svg-icons";
+    src: url('svg/svg-icons.eot');
+    src: url('svg/svg-icons.eot?#iefix') format('eot'),
+        url('svg/svg-icons.woff') format('woff'),
+        url('svg/svg-icons.ttf') format('truetype');
+  }
+  
+  @mixin svgicon-styles {
+    font-family: "svg-icons";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+  }
+  
+  %svgicon {
+    @include svgicon-styles;
+  }
+  
+  @function svgicon-char($filename) {
+    $char: "";
+  
+    @if $filename == home {
+        $char: "\E001";
+    }
+  
+    @return $char;
+  } 
+  
+  @mixin svgicon($filename, $insert: before, $extend: true) {
+    &:#{$insert} {
+        @if $extend {
+            @extend %svgicon;
+        } @else {
+            @include svgicon-styles;
+        }
+        content: svgicon-char($filename);
+    }
+  }
+  .svgicon-home {
+    @include svgicon(home);
+  }
+  
+  
