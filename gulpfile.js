@@ -28,8 +28,8 @@ const paths = {
     watchFiles: 'src/assets/javascript/**/*.js',
   },
   icons: {
-    src: 'src/assets/svg/*.svg',
-    dest: 'public/svg',
+    src: 'public/svg/*.svg',
+    dest: 'public/www/fontsvg',
   },
   sassLint: '.sass-lint.yml',
 };
@@ -83,9 +83,9 @@ const SvgToFont = () => {
       iconfontCss({
         fontName: 'svg-icons',
         cssClass: 'svgicon',
-        path: 'src/assets/config/icon-font.scss',
-        targetPath: '../../src/assets/scss/fonts/_icon-font.scss',
-        fontPath: 'svg/',
+        path: 'src/assets/config/icon-font.scss', //template
+        targetPath: '../../../src/assets/scss/fonts/_icon-font.scss',
+        fontPath: '/fontsvg/',
       })
     )
     .pipe(
@@ -102,7 +102,7 @@ const SvgToFont = () => {
 };
 
 const Clean = () => {
-  return del(['public/css', 'public/js', 'public/svg'], { force: true });
+  return del(['public/css', 'public/js'], { force: true });
 };
 
 const develop = () => {
@@ -122,6 +122,7 @@ const Watching = (cb) => {
 };
 
 // SvgToFont
-const build = series(Clean, Style, Script, Watching);
+const build = series(Clean, SvgToFont, Style, Script, Watching);
+// const build = series(SvgToFont);
 
 exports.default = build;

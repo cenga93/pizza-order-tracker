@@ -1,9 +1,9 @@
 @font-face {
     font-family: "svg-icons";
-    src: url('svg/svg-icons.eot');
-    src: url('svg/svg-icons.eot?#iefix') format('eot'),
-        url('svg/svg-icons.woff') format('woff'),
-        url('svg/svg-icons.ttf') format('truetype');
+    src: url('/fontsvg/svg-icons.eot');
+    src: url('/fontsvg/svg-icons.eot?#iefix') format('eot'),
+        url('/fontsvg/svg-icons.woff') format('woff'),
+        url('/fontsvg/svg-icons.ttf') format('truetype');
   }
   
   @mixin svgicon-styles {
@@ -25,7 +25,7 @@
   @function svgicon-char($filename) {
     $char: "";
   
-    @if $filename == home {
+    @if $filename == shopping-cart-solid {
         $char: "\E001";
     }
   
@@ -42,8 +42,8 @@
         content: svgicon-char($filename);
     }
   }
-  .svgicon-home {
-    @include svgicon(home);
+  .svgicon-shopping-cart-solid {
+    @include svgicon(shopping-cart-solid);
   }
   
   

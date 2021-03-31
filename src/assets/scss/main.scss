@@ -1,7 +1,6 @@
 // FONTS
-
-// @import './fonts/fonts';
-// @import './fonts/icon-font';
+@import './fonts/webfonts';
+@import './fonts/icon-font';
 
 // HELPERS
 @import './helpers/variables';
@@ -17,4 +16,4 @@
 @import './layout/footer';
 
 // PAGES
-// @import './pages/home';
+@import './pages/home';
