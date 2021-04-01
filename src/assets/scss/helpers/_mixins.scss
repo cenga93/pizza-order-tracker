@@ -1,7 +1,14 @@
-@mixin display-style($display, $justify, $align) {
+@mixin display-style($align, $display, $justify) {
   align-items: $align;
   display: $display;
   justify-content: $justify;
+}
+
+@mixin main-button {
+  background-color: $primary;
+  border-radius: 50px;
+  color: $white;
+  padding: 0.4rem 1.3rem;
 }
 
 // MEDIA QUERY

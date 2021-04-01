@@ -1,6 +1,12 @@
 .navbar {
   background-color: $white;
 
+  &__list {
+    @media only screen and (max-width: 991px) {
+      align-items: center;
+    }
+  }
+
   &__logo {
     width: 50px;
 
@@ -11,14 +17,16 @@
 
   &__item {
     &--cart {
-      @include display-style(flex, center, center);
-      background-color: $primary;
-      border-radius: 50px;
+      @media only screen and (max-width: 991px) {
+        width: 25%;
+      }
+
+      @include display-style(center, flex, center);
+      @include main-button;
       margin-left: 8px;
-      padding: 0 1.3rem;
 
       a {
-        color: $white !important;
+        color: $light-gray !important;
       }
     }
 
@@ -33,9 +41,19 @@
       }
 
       &:hover {
+        color: $white !important;
+
         &::after {
           transition: width 0.3s;
           width: 100%;
+        }
+      }
+    }
+
+    &:last-child {
+      a {
+        &::after {
+          display: none;
         }
       }
     }

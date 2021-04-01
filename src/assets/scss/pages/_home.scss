@@ -1,3 +1,4 @@
+// start::HERO
 .hero {
   align-items: center;
   background: linear-gradient(90deg, rgba(243, 243, 243, 0.945) 35%, rgba(247, 247, 247, 0.945) 100%), url('/img/overlay.png') repeat-x;
@@ -5,10 +6,93 @@
   min-height: 90vh;
   width: 100%;
 
-  &__box {
+  @include media-query(mobile) {
     align-items: flex-start;
-    display: flex;
+    padding: 2rem 0.5rem;
+  }
+
+  &__box {
+    @include display-style(flex-start, flex, center);
     flex-direction: column;
-    justify-content: center;
+
+    img {
+      @include media-query(ltablet) {
+        width: 70%;
+      }
+    }
+
+    @include media-query(mobile) {
+      align-items: center;
+    }
+
+    @include media-query(tablet) {
+      align-items: center;
+    }
+
+    @include media-query(ltablet) {
+      align-items: center;
+    }
+
+    &:first-child {
+      @include media-query(mobile) {
+        margin-bottom: 2rem;
+      }
+
+      @include media-query(tablet) {
+        margin-bottom: 4rem;
+      }
+
+      @include media-query(ltablet) {
+        margin-bottom: 5rem;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+
+    @include media-query(mobile) {
+      font-size: 50px;
+    }
+
+    @include media-query(tablet) {
+      font-size: 70px;
+    }
+
+    @include media-query(ltablet) {
+      font-size: 80px;
+    }
+  }
+
+  &__subtitle {
+    font-style: italic;
+
+    @include media-query(tablet) {
+      font-size: 20px;
+    }
+
+    @include media-query(ltablet) {
+      font-size: 22px;
+    }
+  }
+
+  &__button {
+    @include main-button;
+    color: $light-gray;
+
+    @include media-query(tablet) {
+      padding: 0.6rem 2rem;
+    }
+
+    @include media-query(ltablet) {
+      padding: 0.8rem 3rem;
+    }
+
+    &:hover {
+      color: $white;
+    }
   }
 }
+// end::HERO
