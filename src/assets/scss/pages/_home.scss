@@ -80,12 +80,12 @@
 
   &__button {
     @include main-button;
-    color: $light-gray;
-    padding: 0.7rem 3rem;
     color: $black-light;
-    text-transform: uppercase;
-    font-weight: bold;
+
     font-size: 18px;
+    font-weight: bold;
+    padding: 0.7rem 3rem;
+    text-transform: uppercase;
 
     @include media-query(tablet) {
       padding: 0.6rem 2rem;
@@ -101,9 +101,11 @@
   }
 }
 // end::HERO
+
 // start::PRODUCTS SECTION
 .products {
   padding: 2rem;
+
   &__img-box {
     @include display-style(center, flex, center);
     min-height: 250px;
@@ -130,7 +132,7 @@
   }
 
   &__info {
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem 1rem 0;
     text-align: center;
 
     h3 {
@@ -139,21 +141,21 @@
     }
 
     h2 {
-      font-weight: bold;
+      color: $red;
       font-size: 25px;
-      color: #bf3527;
+      font-weight: bold;
     }
   }
 
   &__button {
     @include main-button;
-    padding: 0.8rem 2rem;
-    border-radius: 0;
     background: $primary;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 17px;
+    border-radius: 0;
     color: $black-light;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    text-transform: uppercase;
 
     &:hover {
       color: $white;
