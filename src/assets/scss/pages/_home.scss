@@ -49,7 +49,7 @@
   }
 
   &__title {
-    font-size: 60px;
+    font-size: 70px;
     font-weight: bold;
     margin-bottom: 1rem;
 
@@ -81,6 +81,11 @@
   &__button {
     @include main-button;
     color: $light-gray;
+    padding: 0.7rem 3rem;
+    color: $black-light;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
 
     @include media-query(tablet) {
       padding: 0.6rem 2rem;
@@ -96,3 +101,63 @@
   }
 }
 // end::HERO
+// start::PRODUCTS SECTION
+.products {
+  padding: 2rem;
+  &__img-box {
+    @include display-style(center, flex, center);
+    min-height: 250px;
+
+    @include media-query(mobile) {
+      min-height: 200px;
+    }
+
+    @include media-query(tablet) {
+      min-height: 200px;
+    }
+
+    @include media-query(ltablet) {
+      min-height: 180px;
+    }
+
+    @include media-query(laptop) {
+      min-height: 170px;
+    }
+
+    img {
+      width: 90%;
+    }
+  }
+
+  &__info {
+    padding: 1rem 1rem 0 1rem;
+    text-align: center;
+
+    h3 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: 25px;
+      color: #bf3527;
+    }
+  }
+
+  &__button {
+    @include main-button;
+    padding: 0.8rem 2rem;
+    border-radius: 0;
+    background: $primary;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 17px;
+    color: $black-light;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+// end::PRODUCTS SECTION
