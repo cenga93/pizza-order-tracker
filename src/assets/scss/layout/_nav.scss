@@ -16,6 +16,8 @@
   }
 
   &__item {
+    text-transform: uppercase;
+    font-weight: bold;
     &--cart {
       @media only screen and (max-width: 991px) {
         width: 25%;
@@ -26,13 +28,13 @@
       margin-left: 8px;
 
       a {
-        color: $light-gray !important;
+        color: $black-light;
       }
     }
 
     a {
       &::after {
-        background-color: $black-hover;
+        background-color: $primary;
         content: '';
         display: block;
         height: 1px;
@@ -41,7 +43,7 @@
       }
 
       &:hover {
-        color: $white !important;
+        color: $primary !important;
 
         &::after {
           transition: width 0.3s;
@@ -57,5 +59,9 @@
         }
       }
     }
+  }
+
+  button {
+    border: none;
   }
 }
