@@ -122,7 +122,6 @@ const Watching = (cb) => {
 };
 
 // SvgToFont
-const build = series(Clean, SvgToFont, Style, Script, Watching);
-// const build = series(SvgToFont);
+const build = series(SvgToFont, Style, Script, Watching);
 
 exports.default = build;
