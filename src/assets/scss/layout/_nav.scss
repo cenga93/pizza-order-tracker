@@ -7,14 +7,6 @@
     }
   }
 
-  &__logo {
-    width: 50px;
-
-    img {
-      width: 100%;
-    }
-  }
-
   &__item {
     font-weight: bold;
     text-transform: uppercase;
@@ -27,9 +19,11 @@
       @include display-style(center, flex, center);
       @include main-button;
       margin-left: 8px;
+      padding: 0;
 
       a {
         color: $black-light;
+        padding: 0.4rem 1.3rem !important;
       }
     }
 
