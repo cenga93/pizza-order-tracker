@@ -2,10 +2,7 @@ options:
   formatter: stylish
 
 # FILES
-files:
-  ignore:
-    - 'src/assets/scss/fonts/*.scss'
-    - 'src/assets/config/*.scss'
+
 rules:
   # Extends
   extends-before-mixins: 1

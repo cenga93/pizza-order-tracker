@@ -5,3 +5,11 @@ exports.home = (req, res) => {
 exports.cart = (req, res) => {
   res.render('pages/_cart');
 };
+
+exports.login = (req, res) => {
+  res.render('pages/_login', { layout: 'layout/_sign' });
+};
+
+exports.register = (req, res) => {
+  res.render('pages/_register');
+};

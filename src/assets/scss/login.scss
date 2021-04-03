@@ -1,0 +1,63 @@
+@import './fonts/webfonts';
+
+// HELPERS
+@import './helpers/variables';
+@import './helpers/mixins';
+
+// BASIC
+@import './basics/body';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  max-width: 330px;
+  width: 100%;
+
+  &__button {
+    @include main-button;
+    border-radius: 0;
+  }
+
+  &__link {
+    // text-decoration: none;
+
+    &:hover {
+      color: $black-light !important;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type='email'] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type='password'] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
