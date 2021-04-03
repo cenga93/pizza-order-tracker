@@ -1,0 +1,51 @@
+// FONTS
+@import './fonts/webfonts';
+
+// HELPERS
+@import './helpers/variables';
+@import './helpers/mixins';
+
+// BASIC
+@import './basics/body';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @include display-style(center, flex, center);
+  background: linear-gradient(90deg, rgba(243, 243, 243, 0.966) 35%, rgba(247, 247, 247, 0.986) 100%), url('/img/overlay.png') repeat-x;
+}
+
+.form {
+  max-width: 400px;
+  padding: 0.5rem;
+  position: relative;
+  top: -50px;
+  width: 100%;
+
+  &__button {
+    @include main-button;
+  }
+
+  &__link {
+    &:hover {
+      color: $black-light !important;
+    }
+  }
+
+  &__footer {
+    @include display-style(center, flex, space-between);
+  }
+
+  .form-floating,
+  .form-control,
+  &__button {
+    border-radius: 0;
+  }
+
+  .form-control {
+    border: 0;
+  }
+}

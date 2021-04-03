@@ -18,9 +18,10 @@ const nodemon = require('gulp-nodemon');
 
 const paths = {
   style: {
-    src: 'src/assets/scss/**/*.scss',
+    src: ['src/assets/scss/**/*.scss', '!src/assets/scss/login.scss'],
     dest: `public/css/`,
     watchFiles: 'src/assets/scss/**/*.scss',
+    formsrc: ['!src/assets/scss/**/*.scss', 'src/assets/scss/login.scss'],
   },
   js: {
     src: 'src/assets/javascript/app.js',
@@ -40,8 +41,9 @@ const Style = () => {
     .pipe(plumber())
     .pipe(
       sassLint({
-        options: {
-          configFile: paths.sassLint,
+        config: paths.sassLint,
+        files: {
+          ignore: ['src/assets/scss/fonts/*.scss', 'src/assets/config/*.scss'],
         },
       })
     )
@@ -51,6 +53,29 @@ const Style = () => {
     .pipe(
       rename({
         basename: 'app',
+        suffix: '.min',
+      })
+    )
+    .pipe(sourcemaps.write('./'))
+    .pipe(dest(paths.style.dest))
+    .pipe(browserSync.stream());
+};
+
+const LoginStyle = () => {
+  return src(paths.style.formsrc)
+    .pipe(sourcemaps.init())
+    .pipe(plumber())
+    .pipe(
+      sassLint({
+        config: paths.sassLint,
+      })
+    )
+    .pipe(sassLint.format())
+    .pipe(sass.sync({ outputStyle: 'compressed' }))
+    .on('error', sass.logError)
+    .pipe(
+      rename({
+        basename: 'login',
         suffix: '.min',
       })
     )
@@ -117,11 +142,12 @@ const develop = () => {
 
 const Watching = (cb) => {
   watch(paths.style.watchFiles, Style);
+  watch(paths.style.watchFiles, LoginStyle);
   watch(paths.js.watchFiles, Script);
   develop(cb);
 };
 
 // SvgToFont
-const build = series(Style, Script, Watching);
+const build = series(Clean, Style, LoginStyle, Script, Watching);
 
 exports.default = build;
