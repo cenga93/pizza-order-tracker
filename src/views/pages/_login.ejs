@@ -1,21 +1,32 @@
 <form class="form">
-  <img src="/img/logo.png" alt="logo" />
+  <a href="/">
+    <img src="/img/logo.png" alt="logo" />
+  </a>
   <h5 class="text-muted my-3">Please sign in</h5>
-  <!-- email -->
-  <div class="form-floating mb-2">
-    <input type="email" class="form-control" name="emal" id="email" placeholder="Email" />
-    <label for="email">Email address</label>
-  </div>
-  <!-- password -->
-  <div class="form-floating mb-2">
-    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" />
-    <label for="floatingPassword">Password</label>
-  </div>
 
-  <button class="w-100 btn btn-lg form__button" type="submit">Sign in</button>
-
-  <div class="form-floating mb-2 form__footer">
-    <p class="text-muted m-0">© 2021</p>
-    <a href="/register" class="text-muted form__link">Registration</a>
+  <div class="row">
+    <div class="col-12">
+      <!-- email -->
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="email" class="form-control" name="emal" id="email" placeholder="Email" />
+        <label for="email">Email address</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <!-- password -->
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="w-100 btn btn-lg form__button shadow shadow-sm" type="submit">Sign in</button>
+    </div>
+    <div class="col-12">
+      <div class="form-floating mb-2 form__footer">
+        <p class="text-muted m-0">© 2021</p>
+        <a href="/register" class="text-muted form__link">Registration</a>
+      </div>
+    </div>
   </div>
 </form>

@@ -1,1 +1,45 @@
-<p>register page</p>
+<form class="form">
+  <a href="/">
+    <img src="/img/logo.png" alt="logo" />
+  </a>
+  <h5 class="text-muted my-3">Registration</h5>
+  <div class="row">
+    <!-- firstname -->
+    <div class="col-md-6">
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" />
+        <label for="firstname">Firstname</label>
+      </div>
+    </div>
+    <!-- lastname -->
+    <div class="col-md-6">
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" />
+        <label for="lastname">Lastname</label>
+      </div>
+    </div>
+    <!-- email -->
+    <div class="col-12">
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="email" name="email" class="form-control" id="email" placeholder="Email" />
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <!-- password -->
+    <div class="col-12">
+      <div class="form-floating mb-2 shadow shadow-sm">
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="w-100 btn btn-lg form__button shadow shadow-sm" type="submit">Sign in</button>
+    </div>
+    <div class="col-12">
+      <div class="form-floating mb-2 form__footer">
+        <p class="text-muted m-0">© 2021</p>
+        <a href="/login" class="text-muted form__link">Back to login</a>
+      </div>
+    </div>
+  </div>
+</form>

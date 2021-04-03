@@ -11,5 +11,5 @@ exports.login = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  res.render('pages/_register');
+  res.render('pages/_register', { layout: 'layout/_sign' });
 };

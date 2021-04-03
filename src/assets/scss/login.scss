@@ -15,12 +15,16 @@ body {
 body {
   display: flex;
   align-items: center;
+  background: linear-gradient(90deg, rgba(243, 243, 243, 0.966) 35%, rgba(247, 247, 247, 0.966) 100%), url('/img/overlay.png') repeat-x;
   justify-content: center;
 }
 
 .form {
-  max-width: 330px;
+  position: relative;
+  top: -50px;
+  max-width: 400px;
   width: 100%;
+  padding: 0.5rem;
 
   &__button {
     @include main-button;
@@ -28,8 +32,6 @@ body {
   }
 
   &__link {
-    // text-decoration: none;
-
     &:hover {
       color: $black-light !important;
     }
@@ -40,24 +42,13 @@ body {
     align-items: center;
     justify-content: space-between;
   }
-}
 
-.form-signin .checkbox {
-  font-weight: 400;
-}
+  .form-floating,
+  .form-control {
+    border-radius: 0px;
+  }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input[type='email'] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type='password'] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  .form-control {
+    border: 0;
+  }
 }
