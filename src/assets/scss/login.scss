@@ -1,3 +1,4 @@
+// FONTS
 @import './fonts/webfonts';
 
 // HELPERS
@@ -13,22 +14,19 @@ body {
 }
 
 body {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(90deg, rgba(243, 243, 243, 0.966) 35%, rgba(247, 247, 247, 0.966) 100%), url('/img/overlay.png') repeat-x;
-  justify-content: center;
+  @include display-style(center, flex, center);
+  background: linear-gradient(90deg, rgba(243, 243, 243, 0.966) 35%, rgba(247, 247, 247, 0.986) 100%), url('/img/overlay.png') repeat-x;
 }
 
 .form {
+  max-width: 400px;
+  padding: 0.5rem;
   position: relative;
   top: -50px;
-  max-width: 400px;
   width: 100%;
-  padding: 0.5rem;
 
   &__button {
     @include main-button;
-    border-radius: 0;
   }
 
   &__link {
@@ -38,14 +36,13 @@ body {
   }
 
   &__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include display-style(center, flex, space-between);
   }
 
   .form-floating,
-  .form-control {
-    border-radius: 0px;
+  .form-control,
+  &__button {
+    border-radius: 0;
   }
 
   .form-control {
