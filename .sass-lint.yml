@@ -1,5 +1,6 @@
 options:
   formatter: stylish
+# test
 
 rules:
   # Extends
