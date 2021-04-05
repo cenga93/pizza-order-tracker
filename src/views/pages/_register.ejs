@@ -1,4 +1,4 @@
-<form class="form">
+<form class="form" action="<%= action %>" method="<%= method %>">
   <a href="/">
     <img src="/img/logo.png" alt="logo" />
   </a>
@@ -7,28 +7,28 @@
     <!-- firstname -->
     <div class="col-md-6">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" />
+        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" required />
         <label for="firstname">Firstname</label>
       </div>
     </div>
     <!-- lastname -->
     <div class="col-md-6">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" />
+        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" required />
         <label for="lastname">Lastname</label>
       </div>
     </div>
     <!-- email -->
     <div class="col-12">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="email" name="email" class="form-control" id="email" placeholder="Email" />
+        <input type="email" name="email" class="form-control" id="email" placeholder="Email" required />
         <label for="email">Email</label>
       </div>
     </div>
     <!-- password -->
     <div class="col-12">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required />
         <label for="password">Password</label>
       </div>
     </div>

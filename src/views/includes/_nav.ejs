@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">
       <img src="/img/logo.png" alt="" />
@@ -25,7 +25,10 @@
         </li>
         <li class="nav-item navbar__item--cart">
           <a class="nav-link p-0 d-flex align-items-center justify-content-center" href="/cart">
+            <% if(locals.session.cart) {%>
             <span class="mr-1 nav-counter text-light"><%= session.cart && session.cart.totalQty %></span>
+            <% }%>
+
             <i class="svgicon-shopping-cart-solid"></i>
           </a>
         </li>

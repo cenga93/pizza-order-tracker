@@ -29,5 +29,6 @@ module.exports.addItemToCart = (req, res) => {
     cart.totalQty += 1;
     cart.totalPrice += price;
   }
+
   return res.json({ data: req.session.cart });
 };

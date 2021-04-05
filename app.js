@@ -6,11 +6,14 @@ const morgan = require('morgan');
 const connection = require('./src/database/connection');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const defaultRouter = require('./src/router/default');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const flash = require('express-flash');
 const MongoStore = require('connect-mongo')(session);
+
+// import routes
+const defaultRouter = require('./src/router/default');
+const authRouter = require('./src/router/auth');
 
 // path
 const __public = path.join(__dirname, 'public');
@@ -46,7 +49,7 @@ app.use(flash());
 connection();
 
 // app config
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(expressLayouts);
@@ -68,6 +71,7 @@ app.use('/fontsvg', express.static(path.join(__public, '/www/fontsvg')));
 
 // load routes
 app.use(defaultRouter);
+app.use(authRouter);
 
 // start server
 app.listen(PORT, () => console.log(`Listening on port: http://localhost:${PORT}`));
