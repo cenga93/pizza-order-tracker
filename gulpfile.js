@@ -11,6 +11,8 @@ const uglify = require('gulp-uglify');
 const iconfontCss = require('gulp-iconfont-css');
 const iconfont = require('gulp-iconfont');
 const nodemon = require('gulp-nodemon');
+const browserify = require('gulp-browserify');
+const { transform } = require('babel-core');
 // ------------------------------------------------------------------------------------
 // npm install --save-dev @babel/core @babel/preset-env
 // npm install --save-dev gulp gulp-sourcemaps gulp-plumber gulp-sass-lint gulp-sass gulp-rename browser-sync del gulp-babel gulp-uglify gulp-iconfont-css gulp-iconfont gulp-nodemon
@@ -86,9 +88,17 @@ const LoginStyle = () => {
 
 const Script = () => {
   return src(paths.js.src)
+    .pipe(sourcemaps.init())
     .pipe(
       babel({
         presets: ['@babel/preset-env'],
+        plugins: [['@babel/transform-runtime']],
+      })
+    )
+    .pipe(
+      browserify({
+        insertGlobals: false,
+        debug: true,
       })
     )
     .pipe(uglify())
@@ -149,5 +159,4 @@ const Watching = (cb) => {
 
 // SvgToFont
 const build = series(Clean, Style, LoginStyle, Script, Watching);
-
 exports.default = build;

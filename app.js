@@ -3,12 +3,14 @@ const dotenv = require('dotenv');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const morgan = require('morgan');
-
-// -----------------------------------------------
-// const connection = require('./src/database/connection');
+const connection = require('./src/database/connection');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const defaultRouter = require('./src/router/default');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const flash = require('express-flash');
+const MongoStore = require('connect-mongo')(session);
 
 // path
 const __public = path.join(__dirname, 'public');
@@ -18,11 +20,33 @@ const __views = path.join(__src, 'views');
 // dotenv init
 dotenv.config();
 
+// session config
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+    }),
+    cookie: { maxAge: 1000 * 60 * 80 * 24 }, // 24 hours
+  })
+);
+
+// global session
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
+// flash
+app.use(flash());
+
 // init database connection
-// connection();
+connection();
 
 // app config
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(expressLayouts);

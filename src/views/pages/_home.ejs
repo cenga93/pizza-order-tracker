@@ -24,202 +24,29 @@
       <h3 class="products__title text-muted">All pizzas</h3>
     </div>
     <div class="row">
+      <% pizzas.map((pizza)=> { %>
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card mb-4 rounded-2 border-0">
           <!-- card body -->
           <div class="card-body shadow pb-0">
             <!-- img box -->
             <div class="products__img-box">
-              <img src="/img/pizzas/pizza1.png" class="img-fluid" alt="" />
+              <img src="/img/pizzas/<%= pizza.img %>" class="img-fluid" alt="" />
             </div>
             <!-- product info -->
             <div class="products__info">
-              <h3>Margherita</h3>
+              <h3><%= pizza.name %></h3>
               <span class="badge rounded-pill bg-light text-dark">cheess</span>
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
+              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span><%= pizza.price %></h2>
             </div>
           </div>
           <!-- card footer -->
           <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
+            <button type="button" data-pizza="<%= JSON.stringify(pizza) %>" class="w-100 btn products__button btn-lg">order now</button>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza2.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza3.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza4.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza5.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza6.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza7.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card mb-4 rounded-2 border-0">
-          <!-- card body -->
-          <div class="card-body shadow pb-0">
-            <!-- img box -->
-            <div class="products__img-box">
-              <img src="/img/pizzas/pizza8.png" class="img-fluid" alt="" />
-            </div>
-
-            <!-- product info -->
-            <div class="products__info">
-              <h3>Margherita</h3>
-
-              <small class="text-muted">cheess</small>
-
-              <h2 class="card-title pricing-card-title"><span class="text-muted fw-light">$</span>300</h2>
-            </div>
-          </div>
-
-          <!-- card footer -->
-          <div class="card-footer shadow p-0 border-0 bg-white">
-            <button type="button" class="w-100 btn products__button btn-lg">order now</button>
-          </div>
-        </div>
-      </div>
+      <% }) %>
     </div>
   </div>
 </section>
