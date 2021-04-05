@@ -36,14 +36,14 @@ app.use(
   })
 );
 
+// flash
+app.use(flash());
+
 // global session
 app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
-
-// flash
-app.use(flash());
 
 // init database connection
 connection();

@@ -3,6 +3,11 @@
     <img src="/img/logo.png" alt="logo" />
   </a>
   <h5 class="text-muted my-3">Registration</h5>
+
+  <%if(messages.error){ %>
+  <h6 class="text-danger"><%= messages.error %></h6>
+  <% } %>
+
   <div class="row">
     <!-- firstname -->
     <div class="col-md-6">
@@ -28,7 +33,7 @@
     <!-- password -->
     <div class="col-12">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required />
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
         <label for="password">Password</label>
       </div>
     </div>
