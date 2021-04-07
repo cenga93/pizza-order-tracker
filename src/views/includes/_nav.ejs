@@ -23,6 +23,10 @@
         <li class="nav-item navbar__item">
           <a class="nav-link" href="/login">Login</a>
         </li>
+
+        <% if(user){ %>
+        <h6>Logovan sam</h6>
+        <% } %>
         <li class="nav-item navbar__item--cart">
           <a class="nav-link p-0 d-flex align-items-center justify-content-center" href="/cart">
             <% if(locals.session.cart) {%>

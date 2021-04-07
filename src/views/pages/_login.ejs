@@ -1,14 +1,18 @@
 <!-- start::LOGIN FORM -->
-<form class="form">
+<form class="form" action="<%= action %>" method="<%= method %>">
   <a href="/">
     <img src="/img/logo.png" alt="logo" />
   </a>
   <h5 class="text-muted my-3">Please sign in</h5>
+
+  <%if(messages.error){ %>
+  <h6 class="text-danger"><%= messages.error %></h6>
+  <% } %>
   <div class="row">
     <!-- email -->
     <div class="col-12">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="email" class="form-control" name="emal" id="email" placeholder="Email" />
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
         <label for="email">Email address</label>
       </div>
     </div>
