@@ -20,13 +20,20 @@
         <li class="nav-item navbar__item">
           <a class="nav-link" href="#">My Orders</a>
         </li>
+
+        <% if(user){ %>
+        <li class="nav-item navbar__item">
+          <!-- <a class="nav-link" href="#">Wellcome: <%= user.email %></a> -->
+          <form class="logout-form" action="/logout" method="POST">
+            <a onclick="document.querySelector('.logout-form').submit()" class="nav-link logout-link" href="#">Logout</a>
+          </form>
+        </li>
+        <% }else{ %>
         <li class="nav-item navbar__item">
           <a class="nav-link" href="/login">Login</a>
         </li>
-
-        <% if(user){ %>
-        <h6>Logovan sam</h6>
         <% } %>
+
         <li class="nav-item navbar__item--cart">
           <a class="nav-link p-0 d-flex align-items-center justify-content-center" href="/cart">
             <% if(locals.session.cart) {%>

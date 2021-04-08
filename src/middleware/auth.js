@@ -1,11 +1,11 @@
 module.exports = (req, res, next) => {
   try {
-    if (req.isAuthenticated()) next();
+    if (!req.isAuthenticated()) next();
     else {
-      req.flash('error', 'Please log in to vies this resource');
-      res.redirect('/login');
+      req.flash('error', 'Please log in...');
+      res.redirect('/');
     }
-  } catch (err) {
-    req.flash('error', err.message);
+  } catch (error) {
+    res.status(500).json({ err: error.message });
   }
 };

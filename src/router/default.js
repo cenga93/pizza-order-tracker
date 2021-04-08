@@ -4,7 +4,7 @@ const checkAuth = require('../middleware/auth');
 const { home, posthome } = require('../controllers/default');
 const { cart, addItemToCart } = require('../controllers/cart');
 
-router.get('/', checkAuth, home);
+router.get('/', home);
 router.post('/', posthome);
 
 router.get('/cart', cart);

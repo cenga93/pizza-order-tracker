@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-// login page
+// login page || GET
 exports.login = (req, res) => {
   res.render('pages/_login', {
     action: '/login',
@@ -21,7 +21,7 @@ exports.register = (req, res) => {
   });
 };
 
-// registration || POST
+// registration page || POST
 exports.addUser = (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
@@ -53,16 +53,14 @@ exports.addUser = (req, res) => {
                   res.status(201).redirect('/login');
                 })
                 .catch((err) => {
-                  res.status(500).json({
-                    error: err,
-                  });
+                  res.status(500).json({ error: err.message });
                 });
             }
           });
         }
       })
       .catch((err) => {
-        console.log(err);
+        res.json({ error: err.message });
       });
   } else {
     req.flash('error', 'All fields are required');
@@ -70,7 +68,7 @@ exports.addUser = (req, res) => {
   }
 };
 
-// login || POST
+// login page || POST
 exports.loginUser = (req, res, next) => {
   // custom callback
   passport.authenticate('local', (err, user, info) => {
@@ -89,7 +87,15 @@ exports.loginUser = (req, res, next) => {
         return next(err);
       }
 
-      return res.redirect('/cart');
+      return res.redirect('/');
     });
   })(req, res, next);
+};
+
+// logout user
+exports.logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+    else res.redirect('/login');
+  });
 };

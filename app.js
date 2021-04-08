@@ -78,8 +78,8 @@ app.use('/fonts', express.static(path.join(__public, '/www/fonts')));
 app.use('/fontsvg', express.static(path.join(__public, '/www/fontsvg')));
 
 // load routes
-app.use(defaultRouter);
 app.use(authRouter);
+app.use(defaultRouter);
 
 // start server
 app.listen(PORT, () => console.log(`Listening on port: http://localhost:${PORT}`));
