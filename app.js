@@ -16,6 +16,7 @@ const initPassport = require('./src/middleware/passport');
 // import routes
 const defaultRouter = require('./src/router/default');
 const authRouter = require('./src/router/auth');
+const ordersRouter = require('./src/router/orders');
 
 // path
 const __public = path.join(__dirname, 'public');
@@ -78,6 +79,7 @@ app.use('/fonts', express.static(path.join(__public, '/www/fonts')));
 app.use('/fontsvg', express.static(path.join(__public, '/www/fontsvg')));
 
 // load routes
+app.use(ordersRouter);
 app.use(authRouter);
 app.use(defaultRouter);
 

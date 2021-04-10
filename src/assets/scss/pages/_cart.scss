@@ -1,6 +1,6 @@
 // start::EMPTY CART SECTION
 .empty-cart {
-  padding: 2rem;
+  padding: 1rem;
 
   &__title,
   &__button {
@@ -70,6 +70,19 @@
   &__price {
     color: $red;
     font-size: 20px;
+  }
+
+  &__checkUser {
+    text-align: right;
+
+    a {
+      @include main-button;
+    }
+  }
+
+  &__button {
+    @include main-button;
+    border-radius: 0;
   }
 
   span {
