@@ -5,9 +5,19 @@
   </a>
   <h5 class="text-muted my-3">Please sign in</h5>
 
-  <%if(messages.error){ %>
-  <h6 class="text-danger"><%= messages.error %></h6>
+  <!-- error messages -->
+  <% if(messages.error){ %>
+  <div class="alert alert-danger" role="alert"><%= messages.error %></div>
   <% } %>
+
+  <!-- success message -->
+  <% if(messages.success){ %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    Registered: <%= messages.success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% } %>
+
   <div class="row">
     <!-- email -->
     <div class="col-12">

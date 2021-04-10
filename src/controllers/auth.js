@@ -2,6 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const { validationResult } = require('express-validator');
 
 // login page || GET
 exports.login = (req, res) => {
@@ -14,88 +15,112 @@ exports.login = (req, res) => {
 
 // registration page || GET
 exports.register = (req, res) => {
+  const errors = req.flash('error');
+
   res.render('pages/_register', {
     action: '/register',
     method: 'POST',
     layout: 'layout/_sign',
+    errors,
   });
 };
 
 // registration page || POST
 exports.addUser = (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const errors = validationResult(req);
 
-  if (firstname && lastname && email && password) {
-    User.exists({ email: email })
-      .then((user) => {
-        if (user) {
-          // email exist
-          req.flash('error', 'Email already taken');
-          return res.status(409).redirect('/register');
-        } else {
-          bcrypt.hash(password, 10, (err, hash) => {
-            if (err) {
-              req.flash('error', 'Sometheng went wrong');
-              return res.status(500).redirect('/register');
-            } else {
-              // new user
-              const newUser = new User({
-                _id: new mongoose.Types.ObjectId(),
-                email: email,
-                password: hash,
-                firstname: firstname,
-                lastname: lastname,
-              });
+  /**
+   * !errors.isEmpty() => exists some errors
+   */
+  if (!errors.isEmpty()) {
+    errors.array().map(({ msg }) => {
+      req.flash('error', msg);
+    });
 
-              newUser
-                .save()
-                .then(() => {
-                  res.status(201).redirect('/login');
-                })
-                .catch((err) => {
-                  res.status(500).json({ error: err.message });
-                });
-            }
-          });
-        }
-      })
-      .catch((err) => {
-        res.json({ error: err.message });
-      });
-  } else {
-    req.flash('error', 'All fields are required');
     return res.redirect('/register');
+  } else {
+    const { firstname, lastname, email, password } = req.body;
+
+    if (firstname && lastname && email && password) {
+      User.exists({ email: email })
+        .then((user) => {
+          // email exist
+          if (user) {
+            req.flash('error', 'Email already taken');
+            return res.status(409).redirect('/register');
+          } else {
+            bcrypt.hash(password, 10, (err, hash) => {
+              if (err) {
+                req.flash('error', 'Sometheng went wrong');
+                return res.status(500).redirect('/register');
+              } else {
+                // create new user
+                const newUser = new User({ _id: new mongoose.Types.ObjectId(), password: hash, email, firstname, lastname });
+                // save new user
+                newUser
+                  .save()
+                  .then((result) => {
+                    const registeredEmail = result.email;
+                    req.flash('success', registeredEmail);
+                    return res.status(201).redirect('/login');
+                  })
+                  .catch((err) => {
+                    return res.status(500).json({ error: err.message });
+                  });
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          return res.json({ error: err.message });
+        });
+    } else {
+      req.flash('error', 'All fields are required');
+      return res.redirect('/register');
+    }
   }
 };
 
 // login page || POST
 exports.loginUser = (req, res, next) => {
-  // custom callback
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      req.flash('error', info.message);
-      return next(err);
-    }
-    if (!user) {
-      req.flash('error', info.message);
-      return res.redirect('/login');
-    }
+  const errors = validationResult(req);
 
-    req.logIn(user, (err) => {
+  /**
+   * !errors.isEmpty() => exists some errors
+   */
+  if (!errors.isEmpty()) {
+    errors.array().map(({ msg }) => {
+      req.flash('error', msg);
+    });
+    return res.redirect('/login');
+  } else {
+    // custom callback
+    passport.authenticate('local', (err, user, { message }) => {
+      if (!user) {
+        req.flash('error', message);
+        return res.redirect('/login');
+      }
+
       if (err) {
-        req.flash('error', info.message);
+        req.flash('error', message);
         return next(err);
       }
 
-      return res.redirect('/');
-    });
-  })(req, res, next);
+      req.logIn(user, (err) => {
+        if (err) {
+          req.flash('error', message);
+          return next(err);
+        }
+        return res.redirect('/');
+      });
+    })(req, res, next);
+  }
 };
 
 // logout user
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
-    if (err) throw err;
+    if (err) throw new Error(err);
     else res.redirect('/login');
   });
 };

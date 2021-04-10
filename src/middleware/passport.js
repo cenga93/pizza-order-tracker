@@ -13,7 +13,9 @@ module.exports = (passport) => {
            * 2. null is error
            * 3. false is user
            */
-          if (!user) done(null, false, { message: 'No exist user with this email' });
+          if (!user) {
+            return done(null, false, { message: 'No exist user with this email' });
+          }
 
           //
           /**
@@ -21,12 +23,18 @@ module.exports = (passport) => {
            * isMAtch is boolean
            */
           bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) done(null, user, { message: 'Logged in' });
-            else done(null, false, { message: 'Password incorrect' });
+            if (err) {
+              return res.json({ error: err.message });
+            } else if (isMatch) {
+              return done(null, user, { message: 'Logged in' });
+            } else {
+              return done(null, false, { message: 'Password incorrect' });
+            }
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          return res.json({ error: err.message });
+        });
     })
   );
 

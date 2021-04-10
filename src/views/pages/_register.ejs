@@ -4,8 +4,11 @@
   </a>
   <h5 class="text-muted my-3">Registration</h5>
 
-  <%if(messages.error){ %>
-  <h6 class="text-danger"><%= messages.error %></h6>
+  <% for(err in errors) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= errors[err] %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <% } %>
 
   <div class="row">
@@ -33,7 +36,7 @@
     <!-- password -->
     <div class="col-12">
       <div class="form-floating mb-2 shadow shadow-sm">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required />
         <label for="password">Password</label>
       </div>
     </div>

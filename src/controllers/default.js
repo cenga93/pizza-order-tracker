@@ -9,8 +9,8 @@ module.exports.home = async (req, res) => {
 
     if (pizzas.length) res.status(200).render('pages/_home', { pizzas });
     else res.status(404).json({ message: 'Not found records' });
-  } catch (error) {
-    res.status(500).json({ err: error.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 };
 
@@ -24,7 +24,7 @@ module.exports.posthome = (req, res) => {
     .then((result) => {
       res.json(result);
     })
-    .catch((err) => {
-      console.log('Neka greska');
+    .catch(({ message }) => {
+      res.status(500).json({ message });
     });
 };
