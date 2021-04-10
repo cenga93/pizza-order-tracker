@@ -23,6 +23,7 @@
         <hr />
       </div>
     </div>
+
     <% for(let pizza of Object.values(session.cart.items)) { %>
     <div class="row p-3 shadow shadow-sm m-1 bg-light">
       <div class="col-lg-1 col-md-2 col-sm-3 cart__img-box">
@@ -40,8 +41,38 @@
       </div>
     </div>
     <% } %>
-  </div>
+    <hr />
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <% if(user){ %>
+        <form class="row" action="/orders" method="POST">
+          <!-- phone number -->
+          <div class="col-12">
+            <div class="form-floating mb-2 shadow shadow-sm">
+              <input type="text" class="form-control border-0" name="phone" id="phone" placeholder="Phone number" />
+              <label for="phone">Phone number</label>
+            </div>
+          </div>
+          <!-- address -->
+          <div class="col-12">
+            <div class="form-floating mb-2 shadow shadow-sm">
+              <input type="text" class="form-control border-0" name="address" id="address" placeholder="Address" />
+              <label for="address">Address</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button class="w-100 btn btn-md shadow shadow-sm cart__button" type="submit">Order now</button>
+          </div>
+        </form>
 
-  <h2>Total Price: <%= session.cart.totalPrice%></h2>
+        <% }else{ %>
+        <div class="cart__checkUser">
+          <h4>Total amount: $<%= session.cart.totalPrice%></h4>
+          <a href="/login" class="btn">Login to continue</a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
 </section>
 <% } %>

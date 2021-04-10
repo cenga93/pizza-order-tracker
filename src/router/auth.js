@@ -6,6 +6,7 @@ const { login, register, addUser, loginUser, logout } = require('../controllers/
 
 router.get('/login', checkAuth, login);
 router.get('/register', checkAuth, register);
+
 router.post('/register', validationRules.register(), addUser);
 router.post('/login', validationRules.login(), loginUser);
 router.post('/logout', logout);
