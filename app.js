@@ -10,6 +10,8 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const flash = require('express-flash');
 const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
+const initPassport = require('./src/middleware/passport');
 
 // import routes
 const defaultRouter = require('./src/router/default');
@@ -36,14 +38,20 @@ app.use(
   })
 );
 
-// global session
-app.use((req, res, next) => {
-  res.locals.session = req.session;
-  next();
-});
+// passport config
+initPassport(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // flash
-app.use(flash());
+app.use(flash({ sessionKeyName: 'flashMessage' }));
+
+// global vars
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  res.locals.user = req.user;
+  next();
+});
 
 // init database connection
 connection();
@@ -70,8 +78,8 @@ app.use('/fonts', express.static(path.join(__public, '/www/fonts')));
 app.use('/fontsvg', express.static(path.join(__public, '/www/fontsvg')));
 
 // load routes
-app.use(defaultRouter);
 app.use(authRouter);
+app.use(defaultRouter);
 
 // start server
 app.listen(PORT, () => console.log(`Listening on port: http://localhost:${PORT}`));

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const checkAuth = require('../middleware/auth');
 const { home, posthome } = require('../controllers/default');
 const { cart, addItemToCart } = require('../controllers/cart');
 

@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema(
       require: true,
       minLength: 5,
     },
+    rule: {
+      type: String,
+      default: 'customer',
+    },
   },
   { timestamps: true }
 );
