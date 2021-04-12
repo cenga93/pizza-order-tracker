@@ -73,7 +73,7 @@ class Order {
               <form action="/admin/orders/status" method="POST" > 
                 <input type="hidden" name="orderId" value=${_id} />
                 <select class="form-select" onchange="this.form.submit()" name="status">
-                  <option selected>Open this select menu</option>  
+                  <option selected disabled>select one</option>  
                   <option value="order_placed" ${status === 'order_placed' ? 'selected' : ''}>Placed</option>
                   <option value="confirmed" ${status === 'confirmed' ? 'selected' : ''}>Confirmed</option> 
                   <option value="prepared" ${status === 'prepared' ? 'selected' : ''}>Prepared</option>

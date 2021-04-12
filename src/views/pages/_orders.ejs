@@ -16,7 +16,7 @@
             <% if(orders.length){ %> <% orders.map(({_id, address, phone, createdAt}) => { %>
             <tr>
               <th scope="row" style="width: 30%">
-                <a href="" class="orders__link"><%= _id %></a>
+                <a href="/orders/<%= _id %>" class="orders__link"><%= _id %></a>
               </th>
 
               <td style="width: 20%"><%= address %></td>

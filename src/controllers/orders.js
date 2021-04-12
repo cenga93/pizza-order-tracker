@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 exports.orders = async (req, res) => {
   await Order.find({ customerId: req.user._id }, null, { sort: { createdAt: -1 } })
     .then((orders) => {
-      res.status(200).render('pages/_orders', { orders, moment });
+      res.header('Cache-Control', 'no-cache private, no-store, must-revalidate').status(200).render('pages/_orders', { orders, moment });
     })
     .catch(({ message }) => {
       res.status(500).json({ message });
@@ -38,4 +38,22 @@ exports.addOrders = async (req, res) => {
         res.status(500).json({ message });
       });
   }
+};
+
+exports.single = async (req, res) => {
+  const { id } = req.params;
+  const userID = req.user._id.toString();
+
+  await Order.findById(id)
+    .then((data) => {
+      const dataID = data.customerId.toString();
+
+      if (userID === dataID) {
+        return res.render('pages/_singleOrder', { data });
+      }
+      return res.redirect('/');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

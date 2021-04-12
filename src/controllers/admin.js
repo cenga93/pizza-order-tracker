@@ -12,6 +12,13 @@ exports.admin = async (req, res) => {
     });
 };
 
-exports.changeStatus = (req, res) => {
-  console.log(req.body);
+exports.changeStatus = async (req, res) => {
+  const { orderId, status } = req.body;
+  await Order.updateOne({ _id: orderId }, { status })
+    .then(() => {
+      return res.redirect('/admin/orders');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
