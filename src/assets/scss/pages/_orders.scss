@@ -1,0 +1,10 @@
+.orders {
+  &__link {
+    text-decoration: none;
+    color: $primary;
+
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+}

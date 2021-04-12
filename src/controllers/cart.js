@@ -1,6 +1,7 @@
 // cart page
 module.exports.cart = (req, res) => {
-  res.render('pages/_cart');
+  const errors = req.flash('error');
+  res.render('pages/_cart', { errors });
 };
 
 module.exports.addItemToCart = (req, res) => {

@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const { validationResult } = require('express-validator');
 
+// const _redirectURL = (req) => {
+//   return req.user.role === 'admin' ? '/admin/orders' : '/orders';
+// };
+
 // login page || GET
 exports.login = (req, res) => {
   res.render('pages/_login', {
@@ -111,7 +115,7 @@ exports.loginUser = (req, res, next) => {
           req.flash('error', message);
           return next(err);
         }
-        return res.redirect('/');
+        return res.redirect(req.body.currentPage);
       });
     })(req, res, next);
   }

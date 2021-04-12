@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
-    _id: mongoose.Schema.Types.ObjectId,
     firstname: {
       type: String,
       required: true,
@@ -24,7 +23,7 @@ const userSchema = new mongoose.Schema(
       require: true,
       minLength: 5,
     },
-    rule: {
+    role: {
       type: String,
       default: 'customer',
     },
