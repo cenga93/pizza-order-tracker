@@ -12,6 +12,7 @@ const flash = require('express-flash');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const initPassport = require('./src/middleware/passport');
+const Emitter = require('events');
 
 // import routes
 const defaultRouter = require('./src/router/default');
@@ -26,6 +27,10 @@ const __views = path.join(__src, 'views');
 
 // dotenv init
 dotenv.config();
+
+// event emitter
+const eventEmitter = new Emitter();
+app.set('eventEmitter', eventEmitter);
 
 // session config
 app.use(
@@ -86,4 +91,17 @@ app.use(authRouter);
 app.use(defaultRouter);
 
 // start server
-app.listen(PORT, () => console.log(`Listening on port: http://localhost:${PORT}`));
+const server = app.listen(PORT, () => console.log(`Listening on port: http://localhost:${PORT}`));
+const io = require('socket.io')(server, { cors: { origin: '*' } });
+
+io.on('connection', (socket) => {
+  // join
+  socket.on('join', (orderId) => {
+    // socket.join(orderId); // order_60740fad0568d9b7201b247e
+  });
+});
+
+// this event it's from controller (changeStatus fn())
+eventEmitter.on('statusChanged', (data) => {
+  io.emit('statusChanged', data);
+});

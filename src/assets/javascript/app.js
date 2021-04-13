@@ -92,14 +92,24 @@ class Order {
   }
 
   updateStatus(order) {
-    let complete = true;
+    let completed = true;
+    let timeBox = document.createElement('div');
+    timeBox.classList.add('single-order__time-box');
+
+    steps.map((step) => {
+      step.classList.remove('single-order__item--completed');
+      step.classList.remove('single-order__item--current');
+    });
 
     steps.map((step) => {
       let data = step.dataset.step;
-      complete && step.classList.add('single-order__item--completed');
+
+      completed && step.classList.add('single-order__item--completed');
 
       if (data === order.status) {
-        complete = false;
+        completed = false;
+        timeBox.innerText = order.updatedAt;
+        step.appendChild(timeBox);
         step.nextElementSibling && step.nextElementSibling.classList.add('single-order__item--current');
       }
     });
@@ -129,4 +139,19 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   order.updateStatus(JSON.parse(singleOrder.value));
+
+  // SOCKET IO
+  let socket = io();
+  let orderID = JSON.parse(singleOrder.value).customerId;
+
+  if (singleOrder) {
+    socket.emit('join', `order_${orderID}`);
+  }
+
+  socket.on('statusChanged', (data) => {
+    const updatedOrder = { ...singleOrder };
+    updatedOrder.updatedAt = new Date().toISOString();
+    updatedOrder.status = data.status;
+    order.updateStatus(updatedOrder);
+  });
 });

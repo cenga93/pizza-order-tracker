@@ -16,6 +16,10 @@ exports.changeStatus = async (req, res) => {
   const { orderId, status } = req.body;
   await Order.updateOne({ _id: orderId }, { status })
     .then(() => {
+      // eventEmitter
+      const eventEmitter = req.app.get('eventEmitter');
+      eventEmitter.emit('statusChanged', { orderId, status });
+
       return res.redirect('/admin/orders');
     })
     .catch((err) => {
