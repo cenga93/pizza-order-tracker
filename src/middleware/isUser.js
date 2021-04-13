@@ -1,4 +1,4 @@
-// is user ADMIN logged
+// is user admin logged
 exports.admin = (req, res, next) => {
   try {
     if (req.isAuthenticated() && req.user.role === 'admin') {
