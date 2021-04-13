@@ -133,7 +133,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // if location is host/admin/orders
+  // if  location is host/admin/orders
   if (window.location.pathname === '/admin/orders') {
     order.adminOrder();
   }
