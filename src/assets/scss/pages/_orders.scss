@@ -1,0 +1,116 @@
+.orders {
+  &__link {
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-dark;
+    }
+  }
+}
+
+.single-order {
+  margin-top: 2rem;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__id {
+    background-color: $primary;
+    font-size: 13px;
+    padding: 0.5rem;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    margin-bottom: 2rem;
+
+    &:last-child {
+      margin-bottom: 0;
+
+      div {
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    // step is completed
+
+    &--completed {
+      color: $light-gray;
+
+      div,
+      span {
+        &::before,
+        &::after {
+          background-color: $light-gray;
+        }
+      }
+    }
+
+    // current step
+    &--current {
+      color: $primary;
+
+      span {
+        &::before {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 40px;
+  }
+
+  // time box
+  &__time {
+    color: $primary-dark;
+  }
+
+  // icon box
+  &__icon-box {
+    @include display-style(center, flex, center);
+    margin-right: 1rem;
+    min-width: 70px;
+    position: relative;
+
+    &::after {
+      background-color: $black-light;
+      bottom: -100%;
+      content: '';
+      height: 100%;
+      position: absolute;
+      right: -31%;
+      transform: translateY(-25%);
+      width: 2px;
+    }
+  }
+
+  &__span {
+    align-items: center;
+    display: flex;
+    font-size: 22px;
+    padding-left: 2rem;
+    position: relative;
+
+    &::before {
+      background-color: $black-light;
+      border-radius: 50%;
+      content: '';
+      height: 10px;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+    }
+  }
+}

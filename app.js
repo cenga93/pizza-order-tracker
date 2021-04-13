@@ -17,6 +17,7 @@ const initPassport = require('./src/middleware/passport');
 const defaultRouter = require('./src/router/default');
 const authRouter = require('./src/router/auth');
 const ordersRouter = require('./src/router/orders');
+const adminRouter = require('./src/router/admin');
 
 // path
 const __public = path.join(__dirname, 'public');
@@ -79,6 +80,7 @@ app.use('/fonts', express.static(path.join(__public, '/www/fonts')));
 app.use('/fontsvg', express.static(path.join(__public, '/www/fontsvg')));
 
 // load routes
+app.use('/admin', adminRouter);
 app.use(ordersRouter);
 app.use(authRouter);
 app.use(defaultRouter);

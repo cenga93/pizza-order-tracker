@@ -1,5 +1,6 @@
 <!-- start::LOGIN FORM -->
-<form class="form" action="<%= action %>" method="<%= method %>">
+<form class="form" action="<%= action %>" method="<%= method %>" name="login">
+  <input type="hidden" name="currentPage" value="" />
   <a href="/">
     <img src="/img/logo.png" alt="logo" />
   </a>
@@ -46,4 +47,9 @@
     </div>
   </div>
 </form>
+
+<!-- back to prev page -->
+<script>
+  document.forms['login']['currentPage'].value = localStorage.getItem('currentPage');
+</script>
 <!-- end::LOGIN FORM -->

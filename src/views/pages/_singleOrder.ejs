@@ -1,0 +1,56 @@
+<section class="single-order">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 d-flex">
+        <h2 class="single-order__title">Track delivery status</h2>
+      </div>
+      <div class="col-md-3">
+        <span class="badge rounded-pill single-order__id shadow shadow-sm d-flex align-items-center justify-content-center"
+          ><%= data._id %></span
+        >
+        <input type="hidden" class="orderID" value="<%= JSON.stringify(data) %>" />
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 shadow shadow-sm bg-light p-5 rounded">
+        <ul class="single-order__list list-group">
+          <li class="single-order__item" data-step="order_placed">
+            <div class="single-order__icon-box">
+              <i class="svgicon-clipboard-check-solid single-order__icon"></i>
+            </div>
+            <span class="single-order__span">Order Placed</span>
+            <div class="flex-grow-1 d-flex align-items-center justify-content-end single-order__time">12:54 PM</div>
+          </li>
+
+          <li class="single-order__item" data-step="confirmed">
+            <div class="single-order__icon-box">
+              <i class="svgicon-check-double-solid single-order__icon"></i>
+            </div>
+            <span class="single-order__span">Order confirmation</span>
+          </li>
+
+          <li class="single-order__item" data-step="prepared">
+            <div class="single-order__icon-box">
+              <i class="svgicon-pizza-slice-solid single-order__icon"></i>
+            </div>
+            <span class="single-order__span">Preparation</span>
+          </li>
+
+          <li class="single-order__item" data-step="delivered">
+            <div class="single-order__icon-box">
+              <i class="svgicon-truck-solid single-order__icon"></i>
+            </div>
+            <span class="single-order__span">Out for delivery</span>
+          </li>
+
+          <li class="single-order__item" data-step="completed">
+            <div class="single-order__icon-box">
+              <i class="svgicon-utensils-solid single-order__icon"></i>
+            </div>
+            <span class="single-order__span">Complete</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
