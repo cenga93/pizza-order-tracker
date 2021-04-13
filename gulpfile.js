@@ -158,5 +158,5 @@ const Watching = (cb) => {
 };
 
 // SvgToFont
-const build = series(Clean, Style, LoginStyle, Script, Watching);
+const build = series(Clean, SvgToFont, Style, LoginStyle, Script, Watching);
 exports.default = build;

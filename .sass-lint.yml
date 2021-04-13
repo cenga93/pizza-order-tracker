@@ -85,7 +85,7 @@ rules:
     - include: true
   nesting-depth:
     - 2
-    - max-depth: 2
+    - max-depth: 3
   property-sort-order:
     - 1
     - order: alphabetical

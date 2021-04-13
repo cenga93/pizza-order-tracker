@@ -25,8 +25,23 @@
   @function svgicon-char($filename) {
     $char: "";
   
-    @if $filename == shopping-cart-solid {
+    @if $filename == check-double-solid {
         $char: "\E001";
+    }
+    @if $filename == clipboard-check-solid {
+        $char: "\E002";
+    }
+    @if $filename == pizza-slice-solid {
+        $char: "\E003";
+    }
+    @if $filename == shopping-cart-solid {
+        $char: "\E004";
+    }
+    @if $filename == truck-solid {
+        $char: "\E005";
+    }
+    @if $filename == utensils-solid {
+        $char: "\E006";
     }
   
     @return $char;
@@ -42,8 +57,28 @@
         content: svgicon-char($filename);
     }
   }
+  .svgicon-check-double-solid {
+    @include svgicon(check-double-solid);
+  }
+  
+  .svgicon-clipboard-check-solid {
+    @include svgicon(clipboard-check-solid);
+  }
+  
+  .svgicon-pizza-slice-solid {
+    @include svgicon(pizza-slice-solid);
+  }
+  
   .svgicon-shopping-cart-solid {
     @include svgicon(shopping-cart-solid);
+  }
+  
+  .svgicon-truck-solid {
+    @include svgicon(truck-solid);
+  }
+  
+  .svgicon-utensils-solid {
+    @include svgicon(utensils-solid);
   }
   
   

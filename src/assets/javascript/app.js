@@ -2,6 +2,8 @@
  * ****** | with [axios] app.min.js +12,3kB | *******
  */
 const addToCartButton = document.querySelectorAll('.products__button');
+const singleOrder = document.querySelector('.orderID') ? document.querySelector('.orderID') : null;
+const steps = [...document.querySelectorAll('.single-order__item')];
 
 class Cart {
   updateCart(selectedPizza) {
@@ -88,6 +90,20 @@ class Order {
       })
       .join('');
   }
+
+  updateStatus(order) {
+    let complete = true;
+
+    steps.map((step) => {
+      let data = step.dataset.step;
+      complete && step.classList.add('single-order__item--completed');
+
+      if (data === order.status) {
+        complete = false;
+        step.nextElementSibling && step.nextElementSibling.classList.add('single-order__item--current');
+      }
+    });
+  }
 }
 
 // ********************************************************
@@ -108,5 +124,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   // if location is host/admin/orders
-  if (window.location.pathname === '/admin/orders') order.adminOrder();
+  if (window.location.pathname === '/admin/orders') {
+    order.adminOrder();
+  }
+
+  order.updateStatus(JSON.parse(singleOrder.value));
 });
